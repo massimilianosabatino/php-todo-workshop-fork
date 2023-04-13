@@ -10,7 +10,8 @@ function addTodo($todo_list, $params){
 
     $todo = [
         'text' => $params['todo'],
-        'done' => false
+        'done' => false,
+        'username' => $params['username']
     ];
 
     $todo_list[] = $todo; //array php associativo
@@ -51,7 +52,7 @@ function editTodo($todo_list, $params){
 
 //salvataggio file e creazione backup
 function saveFile($file, $old_data = NULL, $new_data = NULL){
-    
+
     //definizione cartelle
     $default_dir = __DIR__;
     $bk_dir = __DIR__.'/bk';
@@ -72,4 +73,20 @@ function saveFile($file, $old_data = NULL, $new_data = NULL){
         $filename = $default_dir.'/'.$file;
         file_put_contents($filename, $new_data); //salviamo la stringa json
     }
+}
+
+function login($username, $password) {
+    $usersFile = file_get_contents(__DIR__ . '/users.json');
+    $users = json_decode($usersFile, true);
+
+    $foundUser = null;
+    for ($i = 0; $i < count($users); $i++) {
+        $user = $users[$i];
+        if ($user['username'] === $username && $user['password'] === $password) {
+            $foundUser = $user;
+            break;
+        }
+    }
+
+    return $foundUser;
 }

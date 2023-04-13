@@ -17,20 +17,38 @@
 <body>
     <div id="app">
         <div class="container">
-            <h1>TodoList</h1>
-            <ul>
-                <li v-for="todo in todos">{{todo.text}}</li>
-            </ul>
-            <form @submit.prevent="addToDo" class="g-3 mt-2 me-0">
-                <div class="d-inline-block">
-                    <label for="newtodo" class="visually-hidden">NewToDo</label>
-                    <input v-model="newToDo" type="text" class="text-newtodo" id="newtodo"
-                        placeholder="Inserisci elemento...">
-                </div>
-                <div class="d-inline-block">
-                    <button class="button-newtodo">Inserisci</button>
-                </div>
+            <form @submit.prevent="login" class="g-3 mt-2 me-0" v-if="!logged">
+                <label for="username">Username</label>
+                <input id="username" type="text" v-model="username">
+                <br><br>
+                <label for="password">Password</label>
+                <input id="password" type="password" v-model="password">
+                <br><br>
+                <button>Accedi</button>
             </form>
+
+            <div v-if="logged">
+                <h1>TodoList</h1>
+                <ul>
+                    <li v-for="(todo, i) in todos">
+                        {{todo.text}}
+
+                        <button @click="removeTodo(i)">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </li>
+                </ul>
+                <form @submit.prevent="addToDo" class="g-3 mt-2 me-0">
+                    <div class="d-inline-block">
+                        <label for="newtodo" class="visually-hidden">NewToDo</label>
+                        <input v-model="newToDo" type="text" class="text-newtodo" id="newtodo"
+                            placeholder="Inserisci elemento...">
+                    </div>
+                    <div class="d-inline-block">
+                        <button class="button-newtodo">Inserisci</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
       <!-- vuejs & axios-->
