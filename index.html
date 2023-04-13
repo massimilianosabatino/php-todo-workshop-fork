@@ -21,6 +21,16 @@
             <ul>
                 <li v-for="todo in todos">{{todo.text}}</li>
             </ul>
+            <form @submit.prevent="addToDo" class="g-3 mt-2 me-0">
+                <div class="d-inline-block">
+                    <label for="newtodo" class="visually-hidden">NewToDo</label>
+                    <input v-model="newToDo" type="text" class="text-newtodo" id="newtodo"
+                        placeholder="Inserisci elemento...">
+                </div>
+                <div class="d-inline-block">
+                    <button class="button-newtodo">Inserisci</button>
+                </div>
+            </form>
         </div>
     </div>
       <!-- vuejs & axios-->

@@ -4,7 +4,8 @@ createApp({
     data(){
         return {
             apiUrl: 'server.php',
-            todos: []
+            todos: [],
+            newToDo: '',
         }
     },
     methods: {
@@ -14,6 +15,14 @@ createApp({
                 console.log(response);
                 this.todos = response.data;
             })
+        },
+        //metodo per l'aggiunta dei todos
+        addToDo(){
+            console.log(this.newToDo);
+
+            const data = {
+                //...
+            }
         }
     },
     created(){
