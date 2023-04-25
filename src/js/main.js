@@ -44,6 +44,8 @@ createApp({
                 console.log('addToDo response', response);
                 this.todos = response.data;
             });
+            //Clean input field after submit
+            this.newTodo = '';
         },
         removeTodo(i) {
             console.log('Deleting todo on index', i);
