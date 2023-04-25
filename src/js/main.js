@@ -76,13 +76,27 @@ createApp({
                 if (response.data.username) {
                     this.logged = true;
                     this.getTodos();
+                    //Create user in session storage
+                    sessionStorage.setItem("log-status", true);
+                    sessionStorage.setItem("user-logged", response.data.username);
                 } else {
                     alert('Utente non trovato.');
                 }
             })
+        },
+        logOut(){
+            //User logout
+            sessionStorage.clear();
+            location.reload();
         }
     },
     created(){
-        //
+        //Retrive user in session storage if present
+        if (sessionStorage.getItem("log-status") === "true") {
+            this.logged = sessionStorage.getItem("log-status");
+            this.username = sessionStorage.getItem("user-logged");
+        }
+        this.getTodos();
+        console.log('this.todos', this.todos);
     }
 }).mount('#app');

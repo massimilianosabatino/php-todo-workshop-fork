@@ -16,6 +16,9 @@
 </head>
 <body>
     <div id="app">
+        <header>
+            <button @click="logOut">logout</button>
+        </header>
         <div class="container">
             <form @submit.prevent="login" class="g-3 mt-2 me-0" v-if="!logged">
                 <label for="username">Username</label>
